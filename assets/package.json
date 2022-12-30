@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@arcgis/core": "^4.25.5",
     "@faker-js/faker": "^7.5.0",
     "autoprefixer": "^10.4.8",
     "daisyui": "^2.24.0",
