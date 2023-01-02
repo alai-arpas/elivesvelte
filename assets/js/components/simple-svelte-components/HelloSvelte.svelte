@@ -1,29 +1,17 @@
 <script>
-    import MapView from '@arcgis/core/views/MapView'
-    import '@arcgis/core/assets/esri/themes/light/main.css'
-
-    // ADD this function:
-    const createMap = (domNode) => {
-        const view = new MapView({
-            container: domNode,
-            map: {
-                basemap: 'streets-vector'
-            },
-            zoom: 15,
-            center: [-90.1928, 38.6226] // longitude, latitude
-        })
-    }
+    import Nested from './Nested.svelte'
+    export let content
 </script>
 
-<main>
-    <!-- ADD this line: -->
-    <div class="view" use:createMap />
-</main>
+<div class="shadow rounded-3xl p-2 ml-2 bg-secondary-100">
+    <p>This is {content}, in a silly font.</p>
+    <Nested />
+</div>
 
 <style>
-    /* ADD this section: */
-    .view {
-        height: 400px;
-        width: 800px;
+    p {
+        color: purple;
+        font-family: 'Comic Sans MS', cursive;
+        font-size: 2em;
     }
 </style>

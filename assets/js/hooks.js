@@ -3,13 +3,15 @@ import ContactForm from "./components/push-event/ContactForm.svelte"
 import ContactList from "./components/patch-event/ContactList.svelte"
 import NoEvent from "./components/no-event/ClientSide.svelte"
 import E2E from "./components/e-2-e/ChatWindow.svelte"
+import AgisSvelte from "./components/esri/AgisSvelte.svelte"
 
 const components = {
-  HelloSvelte,
-  ContactForm,
-  ContactList,
-  NoEvent,
-  E2E
+    HelloSvelte,
+    ContactForm,
+    ContactList,
+    NoEvent,
+    E2E,
+    AgisSvelte
 }
 
 function parsedProps(el) {
@@ -39,7 +41,7 @@ const SvelteComponent = {
 
         this._instance = new requiredApp({
             target: this.el,
-            props: {...parsedProps(this.el), request, goto },
+            props: { ...parsedProps(this.el), request, goto },
         })
     },
 
@@ -52,7 +54,7 @@ const SvelteComponent = {
             liveSocket.pushHistoryPatch(href, "push", this.el)
         }
 
-        this._instance.$$set({...parsedProps(this.el), request, goto })
+        this._instance.$$set({ ...parsedProps(this.el), request, goto })
     },
 
     destroyed() {
