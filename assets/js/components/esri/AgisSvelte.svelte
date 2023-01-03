@@ -6,8 +6,8 @@
 
     export let anagrafica
 
-    function deleteContact(id) {
-        request('delete', { contact_id: id }, () => {})
+    function azione(id) {
+        console.log(id)
     }
 
     // ADD this function:
@@ -25,7 +25,7 @@
 
 <main>
     <!-- ADD this line: -->
-    <div class="view" use:createMap />
+    <div id="mappa" class="view" use:createMap />
     <div class="mt-10 overflow-x-auto">
         <table class="table w-full">
             <!-- head -->
@@ -35,17 +35,16 @@
                     <th>Codice</th>
                     <th>Nome</th>
                     <th>Localita</th>
-
                     <th />
                 </tr>
             </thead>
             <tbody>
-                {#each anagrafica as idrometro (idrometro.objectid)}
-                    <Idrometro {idrometro} del={deleteContact} />
+                {#each anagrafica as idrometro (idrometro.cod_srv)}
+                    <Idrometro {idrometro} del={azione} />
                 {:else}
                     <tr>
                         <th />
-                        <th class="italic">No contacts!</th>
+                        <th class="italic">Nessun idrometro</th>
                         <th />
                         <th />
                         <th />

@@ -4,6 +4,8 @@ import ContactList from "./components/patch-event/ContactList.svelte"
 import NoEvent from "./components/no-event/ClientSide.svelte"
 import E2E from "./components/e-2-e/ChatWindow.svelte"
 import AgisSvelte from "./components/esri/AgisSvelte.svelte"
+import EsTabella from "./components/esri/EsTabella.svelte"
+
 
 const components = {
     HelloSvelte,
@@ -11,7 +13,8 @@ const components = {
     ContactList,
     NoEvent,
     E2E,
-    AgisSvelte
+    AgisSvelte,
+    EsTabella
 }
 
 function parsedProps(el) {

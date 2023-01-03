@@ -4,11 +4,11 @@
 
 <tr>
     <th>{idrometro.cod_srv}</th>
-    <td>{idrometro.cae_name}</td>
+    <td>{idrometro.cae_nome}</td>
     <td>{idrometro.localita}</td>
 
     <td>
-        <button class="btn" on:click|stopPropagation={() => del(idrometro.objectid)}>
+        <button class="btn" on:click|stopPropagation={() => del(idrometro)}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
