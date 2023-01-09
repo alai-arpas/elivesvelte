@@ -2,6 +2,11 @@
     import MapView from '@arcgis/core/views/MapView'
     import '@arcgis/core/assets/esri/themes/light/main.css'
     import WebMap from '@arcgis/core/WebMap/'
+    import { DataTable } from 'carbon-components-svelte'
+    import { Link } from 'carbon-components-svelte'
+    import 'carbon-components-svelte/css/white.css'
+
+    import { DataTableSkeleton } from 'carbon-components-svelte'
 
     const webmap = new WebMap({
         portalItem: {
@@ -46,6 +51,39 @@
     <div>
         <div id="mappa" class="view" use:createMap />
         <IdroDettaglio {idrometro} />
+        <DataTable
+            sortable
+            expandable
+            headers={[
+                { key: 'id', value: 'Azioni' },
+                { key: 'cod_srv', value: 'Codice' },
+                { key: 'cae_nome', value: 'Nome cae' },
+                { key: 'tipomisura', value: 'Tipo misura' }
+            ]}
+            rows={anagrafica}
+        >
+            <svelte:fragment slot="cell-header" let:header>
+                {#if header.key === 'port'}
+                    {header.value} (network)
+                {:else}
+                    {header.value}
+                {/if}
+            </svelte:fragment>
+            <svelte:fragment slot="cell" let:row let:cell>
+                {#if cell.key === 'tipomisura' && cell.value === 'Alveo'}
+                    <Link href="https://en.wikipedia.org/wiki/Lake" target="_blank"
+                        >{cell.value}</Link
+                    >
+                {:else if cell.key === 'id'}
+                    <IdroDettaglio id={cell.value} idrometro={row} del={azione} />
+                {:else}
+                    {cell.value}
+                {/if}
+            </svelte:fragment>
+            <svelte:fragment slot="expanded-row" let:row>
+                <pre>{JSON.stringify(row, null, 2)}</pre>
+            </svelte:fragment>
+        </DataTable>
     </div>
     <div class="mt-10 overflow-x-auto">
         <table class="table w-full">

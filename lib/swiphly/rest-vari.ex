@@ -49,12 +49,18 @@ defmodule Swiphly.RestVari do
       |> Enum.to_list()
       |> Enum.map(fn {_k, v} -> v end)
 
-    Enum.map(lista, &string_to_key/1)
+    lista
+    |> Enum.map(&string_to_key/1)
+    |> Enum.map(&add_id/1)
   end
 
   defp string_to_key(record) do
     Enum.reduce(record, %{}, fn {key, val}, acc ->
       Map.put(acc, String.to_atom(key), val)
     end)
+  end
+
+  defp add_id(record) do
+    Map.put(record, :id, Map.get(record, :cod_srv))
   end
 end
